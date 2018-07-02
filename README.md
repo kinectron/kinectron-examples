@@ -72,6 +72,10 @@ function setup() {
     //white background
     background(255);
 
+    if (!liveData) {
+        initKinectron();
+    }
+
 }
 
 function draw() {
@@ -85,21 +89,16 @@ function initKinectron() {
 ```
 
 Variables:
-* myCanvas:
-* kinectron:
-* kinectronIpAddress:
-* liveData: boolean for
+* myCanvas: variable for storing the canvas created with p5.js.
+* kinectron: variable for storing a Kinectron instance.
+* kinectronIpAddress: String variable for storing the IP address from the Kinectron server. The format is "X.X.X.X", where X is a number between 0 to 255.
+* liveData: boolean variable for signaling if the Kinectron data used is live (liveData = true) or is pre-recorded data (liveData = false).
 
 Functions:
-* preload(): p5.js function, executes first, once.
-* setup(): p5.js function, executes right after preload(), once.
-* draw(): p5.js function, executes right after setup(), on a loop, by default at a maximum speed of 60 times per second.
-
-
-
-
-
-
+* preload(): p5.js function, executes first, once. All calls to loading assets, such as images, JSON files, should be placed here.
+* setup(): p5.js function, executes right after preload(), once. All configuration of initial conditions, such as creating the canvas and assigning callbacks, should be placed here.
+* draw(): p5.js function, executes right after setup(), on a loop, by default at a maximum speed of 60 times per second. All animation functions that need to be triggered at a specific rate, should be placed here.
+* initKinectron(): function for initializing a kinectron instance.
 
 ## Contribute
 
