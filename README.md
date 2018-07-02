@@ -32,7 +32,7 @@ Python3:
 python3 -m http.server
 ```
 
-* Finally visit [localhost:8000/](localhost:8000/) so that your browser opens index.html and runs the example.
+* Finally visit [http://localhost:8000/](http://localhost:8000/) so that your browser opens index.html and runs the example.
 
 ## Architecture of examples
 
