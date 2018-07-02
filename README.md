@@ -14,6 +14,26 @@ These examples are dependent of the following libraries:
 * [peer.js](https://github.com/peers/peerjs) 0.3.14
 * [three.js](https://github.com/mrdoob/three.js/) r94
 
+## Running the examples
+
+To run the examples, follow these instructions:
+* Download this repository or clone it.
+* If you downloaded it, unzip it.
+* Open your terminal and cd to the example folder you are working on
+* Run a local server, we suggest using Python:
+
+Python2:
+```bash
+python -m SimpleHTTPServer
+```
+
+Python3:
+```bash
+python3 -m http.server
+```
+
+* Finally, visit localhost:8000/, so that your browser opens index.html and runs the example.
+
 ## Architecture of examples
 
 ### p5.js examples
@@ -102,11 +122,10 @@ Functions:
 
 ### three.js examples
 
-three.js examples live in the threejs_examples folder. Each example includes the following files:
+three.js examples live in the threejs_examples folder. Each example includes the following files and folders:
 
-* index.html
-* sketch.js
-* recorded_skeleton.js
+* index.html file
+* js/ folder
 
 ## Contribute
 
