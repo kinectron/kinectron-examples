@@ -28,15 +28,15 @@ The index.html file includes the following
 
 ```html
 <html>
-<head>
-    <script src="../libraries/p5.min.js" type="text/javascript"></script>
-    <script src="../libraries/p5.dom.js" type="text/javascript"></script>
-    <script src="../libraries/kinectron.bundle.js" type="text/javascript"></script>
-    <script src="./js/recorded_skeleton.js" type="text/javascript"></script>
-    <script src="./js/sketch.js" type="text/javascript"></script>
-</head>
-<body>
-</body>
+    <head>
+        <script src="../libraries/p5.min.js" type="text/javascript"></script>
+        <script src="../libraries/p5.dom.js" type="text/javascript"></script>
+        <script src="../libraries/kinectron.bundle.js" type="text/javascript"></script>
+        <script src="./js/recorded_skeleton.js" type="text/javascript"></script>
+        <script src="./js/sketch.js" type="text/javascript"></script>
+    </head>
+    <body>
+    </body>
 </html>
 ```
 
