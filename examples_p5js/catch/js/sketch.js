@@ -1,3 +1,10 @@
+// Set to true if using live kinectron data
+let liveData = false;
+
+// Fill in Kinectron IP Address here ie. "127.16.231.33"
+let kinectronIpAddress = ""; 
+
+// p5 canvas
 let myCanvas = null;
 
 // declare kinectron
@@ -24,9 +31,13 @@ let caught = false;
 
 let processing = false;
 
+// recorded data variables
+let sentTime = Date.now();
+let currentFrame = 0;
+
 // Initialized joints array
 let joints = [];
-for (var a = 0; a < 23; a++) {
+for (let a = 0; a < 23; a++) {
   joints[a] = {};
   joints[a].x = 0;
   joints[a].y = 0;
@@ -36,8 +47,11 @@ function setup() {
   myCanvas = createCanvas(windowWidth, windowHeight - 100);
   background(0);
 
-  // Define and create an instance of kinectron
-  let kinectronIpAddress = ""; // FILL IN YOUR KINECTRON IP ADDRESS HERE
+  if (liveData) initKinectron();
+}
+
+function initKinectron() {
+
   kinectron = new Kinectron(kinectronIpAddress);
 
   // Connect to the microstudio
@@ -48,9 +62,30 @@ function setup() {
 
   // Start the tracked bodies feed over API
   kinectron.startTrackedBodies(playCatch);
+
+
+
 }
 
 function draw() {
+
+  if (!liveData) loopRecordedData();
+
+}
+
+function loopRecordedData() {
+  
+  // send data every 20 seconds 
+  if (Date.now() > sentTime + 20) {
+    playCatch(recorded_skeleton[currentFrame])
+    sentTime = Date.now();
+
+    if (currentFrame < recorded_skeleton.length-1) {
+      currentFrame++;
+    } else {
+      currentFrame = 0;
+    }
+  }
 
 }
 
