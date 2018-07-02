@@ -1,3 +1,14 @@
+// Set to true if using live kinectron data
+let liveData = false;
+
+// fill in kinectron ip address here, by replacing null with an ip address
+// your kinectron ip address is highligted in orange at the top of your kinectron server  
+// the format is four numbers, separated by a period, everything in between quotes
+// the numbers go from 0 to 255
+// example
+// let kinectronIpAddress = "127.16.231.33"
+let kinectronIpAddress = null; 
+
 // declare kinectron
 let kinectron = null;
 
@@ -8,28 +19,55 @@ let myCanvas = null;
 let handColors = {};
 let hands = {};
 
+// recorded data variables
+let sentTime = Date.now();
+let currentFrame = 0;
+
 function setup() {
   myCanvas = createCanvas(512, 424);
   background(0);
   noStroke();
 
-  // Define and create an instance of kinectron
-  let kinectronIpAddress = ""; // FILL IN YOUR KINECTRON IP ADDRESS HERE
-  kinectron = new Kinectron(kinectronIpAddress);
+  if (liveData) initKinectron();
 
-  // Connect to the microstudio
-  //kinectron = new Kinectron("kinectron.itp.tsoa.nyu.edu");
+}
+
+
+function draw() {
+  if (!liveData) loopRecordedData();
+}
+
+
+function initKinectron() {
+
+  // Define and create an instance of kinectron
+  kinectron = new Kinectron(kinectronIpAddress);  
 
   // Connect with application over peer
   kinectron.makeConnection();
 
   // Request right hand and set callback for received hand
   kinectron.startTrackedJoint(kinectron.HANDRIGHT, drawRightHand);
-}
-
-function draw() {
 
 }
+
+
+function loopRecordedData() {
+  
+  // send data every 20 seconds 
+  if (Date.now() > sentTime + 20) {
+    drawRightHand(recorded_skeleton[currentFrame])
+    sentTime = Date.now();
+
+    if (currentFrame < recorded_skeleton.length-1) {
+      currentFrame++;
+    } else {
+      currentFrame = 0;
+    }
+  }
+
+}
+
 
 function drawRightHand(hand) {
 
