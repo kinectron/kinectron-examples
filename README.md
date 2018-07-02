@@ -1,5 +1,6 @@
 # kinectron-examples
 
+This repository holds examples of Kinectron, working with both [p5.js](https://p5js.org/) and [three.js](https://threejs.org/).
 
 ## Libraries
 
