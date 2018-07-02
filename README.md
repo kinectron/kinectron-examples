@@ -24,7 +24,7 @@ p5.js examples live in a folder which include the following files:
 * sketch.js
 * recorded_skeleton.js
 
-The index.html file includes the following
+The index.html file looks like this
 
 ```html
 <html>
@@ -39,6 +39,14 @@ The index.html file includes the following
     </body>
 </html>
 ```
+
+On the head section, we import the external files for our project:
+* p5.min.js: p5.js library, lives at "libraries", one folder up.
+* p5.dom.js: p5.dom.js library, lives at "libraries", one folder up.
+* kinectron.bundle.js: Kinectron client library, lives at "libraries", one folder up.
+* recorded_skeleton.js: recorded Kinectron data, lives at "js", same level.
+* sketch.js: p5.js sketch, lives at "js", same level.
+
 
 
 
