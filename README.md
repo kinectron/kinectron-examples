@@ -18,7 +18,7 @@ These examples are dependent of the following libraries:
 
 ### p5.js examples
 
-p5.js examples live in a folder which include the following files:
+p5.js examples live in the p5js_examples folder. Each example includes the following files:
 
 * index.html
 * sketch.js
@@ -99,6 +99,14 @@ Functions:
 * __setup()__: p5.js function, executes right after preload(), once. All configuration of initial conditions, such as creating the canvas and assigning callbacks, go here.
 * __draw()__: p5.js function, executes right after setup(), on a loop, by default at a maximum speed of 60 times per second. All animation functions that need to be triggered at a specific rate, go here.
 * __initKinectron()__: function for initializing a kinectron instance.
+
+### three.js examples
+
+three.js examples live in the threejs_examples folder. Each example includes the following files:
+
+* index.html
+* sketch.js
+* recorded_skeleton.js
 
 ## Contribute
 
