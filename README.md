@@ -90,8 +90,10 @@ Variables:
 * kinectronIpAddress:
 * liveData: boolean for
 
-
-
+Functions:
+* preload(): p5.js function, executes first, once.
+* setup(): p5.js function, executes right after preload(), once.
+* draw(): p5.js function, executes right after setup(), on a loop, by default at a maximum speed of 60 times per second.
 
 
 
