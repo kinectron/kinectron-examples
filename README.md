@@ -24,7 +24,7 @@ p5.js examples live in a folder which include the following files:
 * sketch.js
 * recorded_skeleton.js
 
-The index.html file looks like this
+### index.html
 
 ```html
 <html>
@@ -38,6 +38,43 @@ The index.html file looks like this
     <body>
     </body>
 </html>
+```
+
+### sketch.js
+
+```javascript
+
+//variable for storing the canvas
+let myCanvas = null;
+
+//variable for storing the kinectron client
+let kinectron = null;
+
+//variable for storing the kinectron server ip address
+let kinectronIpAddress = "";
+
+let liveData = false;
+
+function preload() {
+
+}
+
+function setup() {
+    //create canvas
+    myCanvas = createCanvas(500, 500);
+    //white background
+    background(255);
+
+}
+
+function draw() {
+
+}
+
+function initKinectron() {
+    
+}
+
 ```
 
 On the head section, we import the external files for our project:
