@@ -19,7 +19,7 @@ These examples are dependent of the following libraries:
 To run the examples, follow these instructions:
 * Download this repository or clone it.
 * If you downloaded it, unzip it.
-* Open your terminal and cd to the example folder you are working on
+* Open your terminal and cd to the folder
 * Run a local server, we suggest using Python:
 
 Python2:
