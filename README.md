@@ -89,10 +89,10 @@ function initKinectron() {
 ```
 
 Variables:
-* myCanvas: variable for storing the canvas created with p5.js.
-* kinectron: variable for storing a Kinectron instance.
-* kinectronIpAddress: String variable for storing the IP address from the Kinectron server. The format is "X.X.X.X", where X is a number between 0 to 255.
-* liveData: boolean variable for signaling if the Kinectron data used is live (liveData = true) or is pre-recorded data (liveData = false).
+* __myCanvas__: variable for storing the canvas created with p5.js.
+* __kinectron__: variable for storing a Kinectron instance.
+* __kinectronIpAddress__: String variable for storing the IP address from the Kinectron server. The format is "X.X.X.X", where X is a number between 0 to 255.
+* __liveData__: boolean variable for signaling if the Kinectron data used is live (liveData = true) or is pre-recorded data (liveData = false).
 
 Functions:
 * __preload()__: p5.js function, executes first, once. All calls to loading assets, such as images, JSON files, go here.
