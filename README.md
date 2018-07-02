@@ -4,6 +4,8 @@
 
 This repository holds examples of Kinectron with [p5.js](https://p5js.org/) and [three.js](https://threejs.org/).
 
+## Architecture of
+
 ## Dependencies
 
 These examples are dependent of the following libraries:
