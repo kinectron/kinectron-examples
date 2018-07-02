@@ -16,9 +16,9 @@ These examples are dependent of the following libraries:
 
 ## Contribute
 
-If you want to contribute an example, please do a pull request to this repository.
+If you find any problem or have a doubt with any of these examples, please [submit an issue](https://github.com/kinectron/kinectron-examples/issues/new) to this repository.
 
-If you find any problem or have a doubt with any of these examples, please submit an issue to this repository.
+If you want to contribute an example, please fork this repository and submit a pull request.
 
 ## License
 
