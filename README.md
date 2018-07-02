@@ -95,10 +95,10 @@ Variables:
 * liveData: boolean variable for signaling if the Kinectron data used is live (liveData = true) or is pre-recorded data (liveData = false).
 
 Functions:
-* *preload()*: p5.js function, executes first, once. All calls to loading assets, such as images, JSON files, go here.
-* setup(): p5.js function, executes right after preload(), once. All configuration of initial conditions, such as creating the canvas and assigning callbacks, go here.
-* draw(): p5.js function, executes right after setup(), on a loop, by default at a maximum speed of 60 times per second. All animation functions that need to be triggered at a specific rate, go here.
-* initKinectron(): function for initializing a kinectron instance.
+* __preload()__: p5.js function, executes first, once. All calls to loading assets, such as images, JSON files, go here.
+* __setup()__: p5.js function, executes right after preload(), once. All configuration of initial conditions, such as creating the canvas and assigning callbacks, go here.
+* __draw()__: p5.js function, executes right after setup(), on a loop, by default at a maximum speed of 60 times per second. All animation functions that need to be triggered at a specific rate, go here.
+* __initKinectron()__: function for initializing a kinectron instance.
 
 ## Contribute
 
