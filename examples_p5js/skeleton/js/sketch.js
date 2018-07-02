@@ -1,28 +1,28 @@
 // Set to true if using live kinectron data
-var liveData = false;
+let liveData = false;
 
 // Fill in Kinectron IP Address here ie. "127.16.231.33"
-var kinectronIpAddress = ""; 
-http://alpha.editor.p5js.org/lisajamhoury/sketches/SkJm1w58M
+let kinectronIpAddress = ""; 
+
 // p5 canvas 
-var myCanvas = null;
+let myCanvas = null;
 
 // Declare kinectron 
-var kinectron = null;
+let kinectron = null;
 
 // drawHand variables
-var start = 30;
-var target = 100;
-var diameter = start;
-var light = 255;
-var dark = 100;
-var hueValue = light;
-var lerpAmt = 0.3;
-var state = 'ascending';
+let start = 30;
+let target = 100;
+let diameter = start;
+let light = 255;
+let dark = 100;
+let hueValue = light;
+let lerpAmt = 0.3;
+let state = 'ascending';
 
 // recorded data variables
-var sentTime = Date.now();
-var currentFrame = 0;
+let sentTime = Date.now();
+let currentFrame = 0;
 
 
 function setup() {
@@ -75,10 +75,10 @@ function initKinectron() {
 function bodyTracked(body) {
   background(0, 20);
 
-  var hands = [];
+  let hands = [];
 
   // Get all the joints off the tracked body and do something with them
-  for(var jointType in body.joints) {
+  for(let jointType in body.joints) {
     joint = body.joints[jointType];
 
     drawJoint(joint);
