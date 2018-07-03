@@ -1,5 +1,15 @@
 // Run with simplehttpserver for image to load properly. http://www.andyjamesdavies.com/blog/javascript/simple-http-server-on-mac-os-x-in-seconds
 
+
+// Set to true if using live kinectron data
+let liveData = false;
+
+// declare IP address, FILL HERE INFO FROM CLIENT
+let kinectronIpAddress = "10.0.1.12";
+
+// Declare kinectron
+let kinectron = null;
+
 let myCanvas = null;
 let beach;
 let img;
@@ -7,12 +17,14 @@ let myDiv;
 
 let processing = false;
 
-// Declare kinectron
-let kinectron = null;
-// declare IP address, FILL HERE INFO FROM CLIENT
+// recorded data variables
+let sentTime = Date.now();
+let currentFrame = 0;
 
-// Set to true if using live kinectron data
-var liveData = false;
+// an array 
+let recordedImgs = [];
+
+
 
 function preload() {
   beach = loadImage("./assets/beach.png");
@@ -21,25 +33,33 @@ function preload() {
 function setup() {
   myCanvas = createCanvas(640, 426);
   background(255);
-  if (liveData) {
-      initKinectron();
-    }
 
-  // Define an instance of kinectron
-  kinectron = new Kinectron(kinectronIpAddress);
+  if (!liveData) {
 
-  // Start the greenscreen camera
-  kinectron.startKey(goToBeach);
+    videoToImages('./assets/vid_white.webm')
+      .then(function(returnedImgs) {
+        recordedImgs = returnedImgs;
+      });
+  }
+
+  if (liveData) initKinectron();
+
 }
+
 
 function draw() {
-    if (!liveData) {
-        loopRecordedData();
-     }
+  
+  // if we're running from recorded video and the recorded images have loaded, loop the recorded images
+  if (!liveData && typeof recordedImgs !== 'undefined' && recordedImgs.length > 0) {
+    loopRecordedData();
+  }
 }
+
+
 
 function goToBeach(img) {
   loadImage(img.src, function(loadedImage) {
+
     image(beach, 0, 0);
     image(loadedImage, 0, 0);
   });
@@ -50,22 +70,22 @@ function initKinectron() {
   // Define and create an instance of kinectron
   kinectron = new Kinectron(kinectronIpAddress);
 
-  // Connect to the ITP microstudio when live
-  //kinectron = new Kinectron("kinectron.itp.tsoa.nyu.edu");
-
   // Connect with application over peer
   kinectron.makeConnection();
+
+  // Start the greenscreen camera
+  kinectron.startKey(goToBeach);
 
 }
 
 function loopRecordedData() {
 
   // send data every 20 seconds
-  if (Date.now() > sentTime + 20) {
-    bodyTracked(recorded_skeleton[currentFrame])
+  if (Date.now() > sentTime + 40) {
+    goToBeach(recordedImgs[currentFrame])
     sentTime = Date.now();
 
-    if (currentFrame < recorded_skeleton.length-1) {
+    if (currentFrame < recordedImgs.length-1) {
       currentFrame++;
     } else {
       currentFrame = 0;
