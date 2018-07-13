@@ -1,6 +1,5 @@
 // Run with simplehttpserver for image to load properly. http://www.andyjamesdavies.com/blog/javascript/simple-http-server-on-mac-os-x-in-seconds
 
-
 // Set to true if using live kinectron data
 let liveData = false;
 
@@ -12,8 +11,6 @@ let kinectron = null;
 
 let myCanvas = null;
 let beach;
-let img;
-let myDiv;
 
 let processing = false;
 
@@ -21,14 +18,14 @@ let processing = false;
 let sentTime = Date.now();
 let currentFrame = 0;
 
-// an array 
+// an array to hold recorded Kinectron images
 let recordedImgs = [];
-
 
 
 function preload() {
   beach = loadImage("./assets/beach.png");
 }
+
 
 function setup() {
   myCanvas = createCanvas(640, 426);
@@ -36,7 +33,7 @@ function setup() {
 
   if (!liveData) {
 
-    videoToImages('./assets/vid_white.webm')
+    videoToImages('./assets/vid_black.webm')
       .then(function(returnedImgs) {
         recordedImgs = returnedImgs;
       });
@@ -48,7 +45,7 @@ function setup() {
 
 
 function draw() {
-  
+
   // if we're running from recorded video and the recorded images have loaded, loop the recorded images
   if (!liveData && typeof recordedImgs !== 'undefined' && recordedImgs.length > 0) {
     loopRecordedData();
@@ -56,10 +53,11 @@ function draw() {
 }
 
 
-
 function goToBeach(img) {
+  // once a kinectron image is loaded
   loadImage(img.src, function(loadedImage) {
 
+    //draw the beach image, then the kinectron key image
     image(beach, 0, 0);
     image(loadedImage, 0, 0);
   });
@@ -80,7 +78,7 @@ function initKinectron() {
 
 function loopRecordedData() {
 
-  // send data every 20 seconds
+  // send data every 20 ms
   if (Date.now() > sentTime + 40) {
     goToBeach(recordedImgs[currentFrame])
     sentTime = Date.now();
@@ -90,6 +88,7 @@ function loopRecordedData() {
     } else {
       currentFrame = 0;
     }
+
   }
 
 }

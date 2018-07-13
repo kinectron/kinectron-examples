@@ -4,14 +4,14 @@ let kinectron = null;
 let frames = [];
 
 function setup() {
-  myCanvas = createCanvas(1000,1000);
+  myCanvas = createCanvas(512,424);
   context = myCanvas.drawingContext;
 
   //console.log(myCanvas.drawingContext);
   background(255);
 
   // Define and create an instance of kinectron
-  let kinectronIpAddress = ""; // FILL IN YOUR KINECTRON IP ADDRESS HERE
+  let kinectronIpAddress = "10.0.1.12"; // FILL IN YOUR KINECTRON IP ADDRESS HERE
   kinectron = new Kinectron(kinectronIpAddress);
 
   // Connect to the microstudio
@@ -21,7 +21,7 @@ function setup() {
   kinectron.makeConnection();
 
   // Set individual frame callbacks
-  kinectron.setColorCallback(colorCallback);
+  kinectron.setKeyCallback(keyCallback);
   kinectron.setDepthCallback(depthCallback);
   kinectron.setBodiesCallback(bodyCallback);
 
@@ -37,19 +37,23 @@ function keyPressed() {
   } else if (keyCode === DOWN_ARROW) {
     kinectron.stopRecord();
   } else if (key === '8') {
-    kinectron.startMultiFrame(['color', 'depth', 'body']);
-  }
+    console.log('d');
+    kinectron.startKey(keyCallback);
+  } else if (key === '9') {
+    kinectron.stopAll();
+  } 
+
 }
 
-function colorCallback(img) {
+function keyCallback(img) {
   loadImage(img.src, function(loadedImage) {
-    image(loadedImage, 0, 273.2, 660, 370);
+    image(loadedImage, 0,0);
   });
 }
 
 function depthCallback(img) {
   loadImage(img.src, function(loadedImage) {
-    image(loadedImage, 330, 0, 330, 273.2);
+    image(loadedImage,0,0);
   });
 }
 
