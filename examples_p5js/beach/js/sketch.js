@@ -9,10 +9,8 @@ let kinectronIpAddress = "10.0.1.12";
 // Declare kinectron
 let kinectron = null;
 
-let myCanvas = null;
+// hold beach image
 let beach;
-
-let processing = false;
 
 // recorded data variables
 let sentTime = Date.now();
@@ -28,7 +26,7 @@ function preload() {
 
 
 function setup() {
-  myCanvas = createCanvas(640, 426);
+  createCanvas(640, 426);
   background(255);
 
   if (!liveData) {
