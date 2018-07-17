@@ -1,6 +1,3 @@
-// Declare canvas
-let myCanvas = null;
-
 // Declare kinectron
 let kinectron1 = null;
 let kinectron2 = null;
@@ -10,7 +7,7 @@ let frameP;
 
 function setup() {
   // Create p5 canvas
-  myCanvas = createCanvas(600, 600);
+  createCanvas(600, 600);
   background(0);
 
   // Create paragraph element for framerate

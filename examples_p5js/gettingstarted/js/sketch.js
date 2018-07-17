@@ -1,12 +1,11 @@
-let myCanvas = null;
-
 // Declare kinectron
 let kinectron = null;
 
+// paragrah to hold frame rate 
 let frameP;
 
 function setup() {
-  myCanvas = createCanvas(500, 500);
+createCanvas(500, 500);
   background(0);
 
   frameP = createP('');
@@ -14,9 +13,6 @@ function setup() {
   // Define and create an instance of kinectron
   let kinectronIpAddress = ""; // FILL IN YOUR KINECTRON IP ADDRESS HERE
   kinectron = new Kinectron(kinectronIpAddress);
-
-  // Connect to the microstudio
-  //kinectron = new Kinectron("kinectron.itp.tsoa.nyu.edu");
 
   // Connect with application over peer
   kinectron.makeConnection();
@@ -28,11 +24,14 @@ function setup() {
 }
 
 function draw() {
+
+  // draw framerate
   let fps = frameRate();
   fill(0);
   stroke(0);
   text("fps: " + fps.toFixed(0), 10, height);
   frameP.html(fps.toFixed(0));
+
 }
 
 // Choose camera to start based on key pressed
