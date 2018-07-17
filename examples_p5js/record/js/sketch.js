@@ -1,23 +1,21 @@
-let myCanvas = null;
-let context = null;
 let kinectron = null;
 let frames = [];
 
 function setup() {
-  myCanvas = createCanvas(512,424);
-  context = myCanvas.drawingContext;
+  // create p5 canvas
+  createCanvas(512,424);
 
   // set background to white
   background(255);
 
-  // Define and create an instance of kinectron
+  // define and create an instance of kinectron
   let kinectronIpAddress = "10.0.1.12"; // FILL IN YOUR KINECTRON IP ADDRESS HERE
   kinectron = new Kinectron(kinectronIpAddress);
 
-  // Connect with application over peer
+  // connect with application over peer
   kinectron.makeConnection();
 
-  // Set callback for Key frame
+  // set callback for key frame
   kinectron.setKeyCallback(keyCallback);
 
 }
@@ -41,6 +39,8 @@ function keyPressed() {
 }
 
 function keyCallback(img) {
+
+  // draw key image when it arrives from kinectron 
   loadImage(img.src, function(loadedImage) {
     image(loadedImage, 0,0);
   });
