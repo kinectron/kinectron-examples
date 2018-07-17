@@ -4,9 +4,6 @@ let liveData = false;
 // Fill in Kinectron IP Address here ie. "127.16.231.33"
 let kinectronIpAddress = ""; 
 
-// p5 canvas
-let myCanvas = null;
-
 // declare kinectron
 let kinectron = null;
 
@@ -34,6 +31,8 @@ let processing = false;
 // recorded data variables
 let sentTime = Date.now();
 let currentFrame = 0;
+let recorded_skeleton;
+let recorded_data_file = "./js/recorded_skeleton.json";
 
 // Initialized joints array
 let joints = [];
@@ -43,27 +42,31 @@ for (let a = 0; a < 23; a++) {
   joints[a].y = 0;
 }
 
+function preload() {
+  
+  if (!liveData) {
+    recorded_skeleton = loadJSON(recorded_data_file);
+  }
+
+}
+
 function setup() {
-  myCanvas = createCanvas(500, 500);
+  createCanvas(500, 500);
   background(0);
 
   if (liveData) initKinectron();
 }
 
+
 function initKinectron() {
 
   kinectron = new Kinectron(kinectronIpAddress);
-
-  // Connect to the microstudio
-  //kinectron = new Kinectron("kinectron.itp.tsoa.nyu.edu");
 
   // Connect remote to application
   kinectron.makeConnection();
 
   // Start the tracked bodies feed over API
   kinectron.startTrackedBodies(playCatch);
-
-
 
 }
 
@@ -80,7 +83,7 @@ function loopRecordedData() {
     playCatch(recorded_skeleton[currentFrame])
     sentTime = Date.now();
 
-    if (currentFrame < recorded_skeleton.length-1) {
+    if (currentFrame < Object.keys(recorded_skeleton).length-1) {
       currentFrame++;
     } else {
       currentFrame = 0;
