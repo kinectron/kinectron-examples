@@ -12,9 +12,6 @@ let kinectronIpAddress = null;
 // declare kinectron
 let kinectron = null;
 
-// Create P5 Canvas
-let myCanvas = null;
-
 // Create objects to store and access hands
 let handColors = {};
 let hands = {};
@@ -22,11 +19,21 @@ let hands = {};
 // recorded data variables
 let sentTime = Date.now();
 let currentFrame = 0;
+let recorded_skeleton;
+let recorded_data_file = "./js/recorded_joints.json";
 
 let ballWidth = 50;
 
+function preload() {
+  
+  if (!liveData) {
+    recorded_skeleton = loadJSON(recorded_data_file);
+  }
+
+}
+
 function setup() {
-  myCanvas = createCanvas(512, 424);
+  createCanvas(512, 424);
   background(0);
   noStroke();
 
@@ -61,7 +68,7 @@ function loopRecordedData() {
     drawRightHand(recorded_skeleton[currentFrame])
     sentTime = Date.now();
 
-    if (currentFrame < recorded_skeleton.length-1) {
+    if (currentFrame < Object.keys(recorded_skeleton).length-1) {
       currentFrame++;
     } else {
       currentFrame = 0;
@@ -104,7 +111,7 @@ function drawRightHand(hand) {
     text(`
     Right hand of player
     with tracking Id:
-    ` + trackedHand.trackingId, (trackedHand.depthX * myCanvas.width) - ballWidth*3, trackedHand.depthY * myCanvas.height);
-    ellipse(trackedHand.depthX * myCanvas.width, trackedHand.depthY * myCanvas.height, ballWidth, ballWidth);
+    ` + trackedHand.trackingId, (trackedHand.depthX * width) - ballWidth*3, trackedHand.depthY * height);
+    ellipse(trackedHand.depthX * width, trackedHand.depthY * height, ballWidth, ballWidth);
   }
 }

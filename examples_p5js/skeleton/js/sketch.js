@@ -23,7 +23,6 @@ let state = 'ascending';
 // recorded data variables
 let sentTime = Date.now();
 let currentFrame = 0;
-
 let recorded_skeleton;
 let recorded_data_file = "./js/recorded_skeleton.json";
 
