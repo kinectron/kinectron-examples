@@ -15,9 +15,10 @@ let videoToImages = function (iSrc) {
 
     // Alert user that something is happening in the background
     alertDiv.innerHTML = `Your recorded Kinectron video is processing.<br> 
-      This may take a while. If it is taking too long, try using a shorter video.<br/>
-      We recommend a video that's less than 10 seconds. <br/>
-      <span id="processing">We're currently figuring out how long your video is... stand by... </span> `
+      This may take a while. If it is taking too long, try using a shorter video.<br>
+      We recommend a video that's less than 10 seconds. <br>
+      ps. if you have adblock installed (even if it's paused!) this will not work. Use a browser without it.<br><br>
+      <span id="processing">We're currently figuring out how long your video is... stand by... </span>`
       ;
 
     // Pin alert message to top 

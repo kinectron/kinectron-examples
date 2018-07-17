@@ -44,7 +44,7 @@ for (let a = 0; a < 23; a++) {
 }
 
 function setup() {
-  myCanvas = createCanvas(windowWidth, windowHeight - 100);
+  myCanvas = createCanvas(500, 500);
   background(0);
 
   if (liveData) initKinectron();
@@ -100,8 +100,15 @@ function keyPressed() {
 
 
 function playCatch(body) {
+  
+  //reset background
   background(backgroundColor);
 
+  // show instructions
+  fill(0);
+  text('try to catch the ball with your right hand!', 10, 10);
+
+  // draw player
   fill(characterColor);
   ellipseMode(CENTER);
 

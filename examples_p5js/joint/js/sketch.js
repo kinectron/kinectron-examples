@@ -23,6 +23,8 @@ let hands = {};
 let sentTime = Date.now();
 let currentFrame = 0;
 
+let ballWidth = 50;
+
 function setup() {
   myCanvas = createCanvas(512, 424);
   background(0);
@@ -99,6 +101,10 @@ function drawRightHand(hand) {
   for (let key in hands) {
     let trackedHand = hands[key];
     fill(trackedHand.color[0], trackedHand.color[1], trackedHand.color[2]);
-    ellipse(trackedHand.depthX * myCanvas.width, trackedHand.depthY * myCanvas.height, 50, 50);
+    text(`
+    Right hand of player
+    with tracking Id:
+    ` + trackedHand.trackingId, (trackedHand.depthX * myCanvas.width) - ballWidth*3, trackedHand.depthY * myCanvas.height);
+    ellipse(trackedHand.depthX * myCanvas.width, trackedHand.depthY * myCanvas.height, ballWidth, ballWidth);
   }
 }

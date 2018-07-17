@@ -33,6 +33,7 @@ function setup() {
 
   if (!liveData) {
 
+    // turn recorded kinectron video into images so they are "served" like kinectron feed
     videoToImages('./assets/vid_black.webm')
       .then(function(returnedImgs) {
         recordedImgs = returnedImgs;
@@ -45,7 +46,7 @@ function setup() {
 
 
 function draw() {
-
+  
   // if we're running from recorded video and the recorded images have loaded, loop the recorded images
   if (!liveData && typeof recordedImgs !== 'undefined' && recordedImgs.length > 0) {
     loopRecordedData();

@@ -1,7 +1,7 @@
 // Set to true if using live kinectron data
 let liveData = false;
 
-// Fill in Kinectron IP Address here ie. "127.16.231.33"
+// fill in kinectron ip address here ie. "127.16.231.33"
 let kinectronIpAddress = ""; 
 
 // p5 canvas 
@@ -24,6 +24,17 @@ let state = 'ascending';
 let sentTime = Date.now();
 let currentFrame = 0;
 
+let recorded_skeleton;
+let recorded_data_file = "./js/recorded_skeleton.json";
+
+
+function preload() {
+  
+  if (!liveData) {
+    recorded_skeleton = loadJSON(recorded_data_file);
+  }
+
+}
 
 function setup() {
   myCanvas = createCanvas(500, 500);
@@ -47,7 +58,7 @@ function loopRecordedData() {
     bodyTracked(recorded_skeleton[currentFrame])
     sentTime = Date.now();
 
-    if (currentFrame < recorded_skeleton.length-1) {
+    if (currentFrame < Object.keys(recorded_skeleton).length-1) {
       currentFrame++;
     } else {
       currentFrame = 0;
@@ -59,9 +70,6 @@ function loopRecordedData() {
 function initKinectron() {
   // Define and create an instance of kinectron
   kinectron = new Kinectron(kinectronIpAddress);
-
-  // Connect to the ITP microstudio when live
-  //kinectron = new Kinectron("kinectron.itp.tsoa.nyu.edu");
 
   // Connect with application over peer
   kinectron.makeConnection();

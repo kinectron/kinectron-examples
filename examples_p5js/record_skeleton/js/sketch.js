@@ -18,7 +18,8 @@ function setup() {
   kinectron.makeConnection();
 
   // Set callback for Key frame
-  kinectron.setKeyCallback(keyCallback);
+  //kinectron.setBodiesCallback(bodyCallback);
+  kinectron.setTrackedBodiesCallback(drawBody);
 
 }
 
@@ -29,7 +30,9 @@ function keyPressed() {
   // press enter to stop the key feed from running
   
   if (key === '8') {
-    kinectron.startKey();
+    console.log('k');
+    kinectron.startTrackedBodies();
+    //kinectron.startBodies();
   } else if (keyCode === UP_ARROW) {
     kinectron.startRecord();
   } else if (keyCode === DOWN_ARROW) {
@@ -46,3 +49,30 @@ function keyCallback(img) {
   });
 }
 
+function bodyCallback(bodyArray) {  
+  let bodies = bodyArray.bodies;
+
+  //find tracked bodies, then draw them
+  for (var i = 0; i < bodies.length; i++) {
+    if (bodies[i].tracked === true) {
+      drawBody(bodies[i]);
+    }
+  }
+}
+
+// function trackedBodyCallback(body) { 
+// debugger;
+
+// }
+
+function drawBody(body) {
+
+  background(255);
+
+  //draw joints in tracked bodies
+  for(var jointType in body.joints) {
+    var joint = body.joints[jointType];
+    fill(0);
+    ellipse(joint.depthX * width, joint.depthY * height, 10, 10);
+  }
+}
