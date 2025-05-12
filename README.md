@@ -1,4 +1,6 @@
-# kinectron-examples
+# kinectron-examples version 0
+
+**NOTE! These examples are for Version 0. They do not work with Version 1, and are now unmaintained. **
 
 ## About
 
